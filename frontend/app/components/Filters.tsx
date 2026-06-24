@@ -1,6 +1,16 @@
 'use client';
 import { Filters } from '../types/kpi';
 
+const STATES = ['SP','RJ','MG','RS','PR','SC','BA','GO','ES','PE','CE','MT','MS','MA','RO','PB','AM','PI','AL','SE','RN','TO','AC','AP','RR','DF','PA'];
+
+const CATEGORIES = [
+  'cama_mesa_banho','beleza_saude','esporte_lazer','informatica_acessorios',
+  'moveis_decoracao','utilidades_domesticas','relogios_presentes','telefonia',
+  'ferramentas_jardim','automotivo','brinquedos','cool_stuff','perfumaria',
+  'bebes','eletronicos','livros_tecnicos','eletrodomesticos','fashion_bolsas_e_acessorios',
+  'papelaria','pet_shop','construcao_ferramentas_seguranca','musica','unknown'
+];
+
 export default function FiltersPanel({
   filters,
   onChange,
@@ -51,8 +61,21 @@ export default function FiltersPanel({
           onChange={(e) => onChange({ ...filters, customerState: e.target.value || undefined })}
         >
           <option value="">Todos</option>
-          {['SP','RJ','MG','RS','PR','SC','BA','GO','ES','PE','CE','MT','MS','MA','RO','PB','AM','PI','AL','SE','RN','TO','AC','AP','RR','DF','PA'].map(state => (
+          {STATES.map(state => (
             <option key={state} value={state}>{state}</option>
+          ))}
+        </select>
+      </div>
+      <div className="flex flex-col gap-1">
+        <label className="text-sm text-gray-500">Categoría</label>
+        <select
+          className="border rounded px-3 py-1 text-sm text-gray-700"
+          value={filters.categoryName || ''}
+          onChange={(e) => onChange({ ...filters, categoryName: e.target.value || undefined })}
+        >
+          <option value="">Todas</option>
+          {CATEGORIES.map(cat => (
+            <option key={cat} value={cat}>{cat.replace(/_/g, ' ')}</option>
           ))}
         </select>
       </div>

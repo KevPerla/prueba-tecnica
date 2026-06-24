@@ -21,8 +21,8 @@ cd prueba-tecnica
 
 2. Crear el archivo `.env` en la raíz:
 ```env
-DB_USER=kevin
-DB_PASSWORD=kevin123
+DB_USER=kev-user12
+DB_PASSWORD=L9m@ka12-@
 DB_NAME=ecommerce
 ```
 
