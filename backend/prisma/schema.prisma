@@ -1,0 +1,141 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["raw", "gold"]
+}
+
+
+model raw_orders {
+  order_id                      String   @id
+  customer_id                   String
+  order_status                  String
+  order_purchase_timestamp      String?
+  order_approved_at             String?
+  order_delivered_carrier_date  String?
+  order_delivered_customer_date String?
+  order_estimated_delivery_date String?
+
+  @@schema("raw")
+}
+
+model raw_order_items {
+  order_id            String
+  order_item_id       Int
+  product_id          String
+  seller_id           String
+  shipping_limit_date String?
+  price               Decimal?
+  freight_value       Decimal?
+
+  @@id([order_id, order_item_id])
+  @@schema("raw")
+}
+
+model raw_order_payments {
+  order_id             String
+  payment_sequential   Int
+  payment_type         String?
+  payment_installments Int?
+  payment_value        Decimal?
+
+  @@id([order_id, payment_sequential])
+  @@schema("raw")
+}
+
+model raw_products {
+  product_id                 String  @id
+  product_category_name      String?
+  product_name_lenght        Int?
+  product_description_lenght Int?
+  product_photos_qty         Int?
+  product_weight_g           Int?
+  product_length_cm          Int?
+  product_height_cm          Int?
+  product_width_cm           Int?
+
+  @@schema("raw")
+}
+
+model raw_customers {
+  customer_id               String @id
+  customer_unique_id        String?
+  customer_zip_code_prefix  String?
+  customer_city             String?
+  customer_state            String?
+
+  @@schema("raw")
+}
+
+
+model dim_date {
+  date_id    Int      @id @default(autoincrement())
+  full_date  DateTime @unique
+  year       Int
+  month      Int
+  day        Int
+  week       Int
+  quarter    Int
+
+  fact_sales fact_sales[]
+
+  @@schema("gold")
+}
+
+model dim_customer {
+  customer_id String @id
+  state       String?
+  city        String?
+
+  fact_sales fact_sales[]
+
+  @@schema("gold")
+}
+
+model dim_product {
+  product_id    String @id
+  category_name String?
+
+  fact_sales fact_sales[]
+
+  @@schema("gold")
+}
+
+model dim_order {
+  order_id       String @id
+  status         String?
+  purchase_date  DateTime?
+  delivered_date DateTime?
+  estimated_date DateTime?
+
+  fact_sales fact_sales[]
+
+  @@schema("gold")
+}
+
+model fact_sales {
+  order_id                String
+  order_item_id           Int
+  item_price              Decimal?
+  freight_value           Decimal?
+  payment_value_allocated Decimal?
+  is_delivered            Boolean @default(false)
+  is_canceled             Boolean @default(false)
+  is_on_time              Boolean @default(false)
+
+  date_id     Int
+  customer_id String
+  product_id  String
+
+  dim_date     dim_date     @relation(fields: [date_id], references: [date_id])
+  dim_customer dim_customer @relation(fields: [customer_id], references: [customer_id])
+  dim_product  dim_product  @relation(fields: [product_id], references: [product_id])
+  dim_order    dim_order    @relation(fields: [order_id], references: [order_id])
+
+  @@id([order_id, order_item_id])
+  @@schema("gold")
+}
