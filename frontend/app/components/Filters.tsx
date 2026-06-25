@@ -19,29 +19,29 @@ export default function FiltersPanel({
   onChange: (filters: Filters) => void;
 }) {
   return (
-    <div className="bg-white rounded-xl shadow p-5 flex flex-wrap gap-4 items-end">
-      <div className="flex flex-col gap-1">
-        <label className="text-sm text-gray-500">Desde</label>
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-wrap gap-4 items-end">
+      <div className="flex flex-col gap-1.5">
+        <label className="text-slate-400 text-xs font-medium uppercase tracking-wider">Desde</label>
         <input
           type="date"
-          className="border rounded px-3 py-1 text-sm text-gray-700"
+          className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition-colors"
           value={filters.from}
           onChange={(e) => onChange({ ...filters, from: e.target.value })}
         />
       </div>
-      <div className="flex flex-col gap-1">
-        <label className="text-sm text-gray-500">Hasta</label>
+      <div className="flex flex-col gap-1.5">
+        <label className="text-slate-400 text-xs font-medium uppercase tracking-wider">Hasta</label>
         <input
           type="date"
-          className="border rounded px-3 py-1 text-sm text-gray-700"
+          className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition-colors"
           value={filters.to}
           onChange={(e) => onChange({ ...filters, to: e.target.value })}
         />
       </div>
-      <div className="flex flex-col gap-1">
-        <label className="text-sm text-gray-500">Estado de orden</label>
+      <div className="flex flex-col gap-1.5">
+        <label className="text-slate-400 text-xs font-medium uppercase tracking-wider">Estado de orden</label>
         <select
-          className="border rounded px-3 py-1 text-sm text-gray-700"
+          className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition-colors"
           value={filters.orderStatus || ''}
           onChange={(e) => onChange({ ...filters, orderStatus: e.target.value || undefined })}
         >
@@ -53,10 +53,10 @@ export default function FiltersPanel({
           <option value="invoiced">Invoiced</option>
         </select>
       </div>
-      <div className="flex flex-col gap-1">
-        <label className="text-sm text-gray-500">Estado del cliente</label>
+      <div className="flex flex-col gap-1.5">
+        <label className="text-slate-400 text-xs font-medium uppercase tracking-wider">Estado del cliente</label>
         <select
-          className="border rounded px-3 py-1 text-sm text-gray-700"
+          className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition-colors"
           value={filters.customerState || ''}
           onChange={(e) => onChange({ ...filters, customerState: e.target.value || undefined })}
         >
@@ -66,10 +66,10 @@ export default function FiltersPanel({
           ))}
         </select>
       </div>
-      <div className="flex flex-col gap-1">
-        <label className="text-sm text-gray-500">Categoría</label>
+      <div className="flex flex-col gap-1.5">
+        <label className="text-slate-400 text-xs font-medium uppercase tracking-wider">Categoría</label>
         <select
-          className="border rounded px-3 py-1 text-sm text-gray-700"
+          className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition-colors"
           value={filters.categoryName || ''}
           onChange={(e) => onChange({ ...filters, categoryName: e.target.value || undefined })}
         >
