@@ -26,7 +26,7 @@ function Delta({ current, previous }: { current: number; previous: number }) {
   const positive = pct >= 0;
   return (
     <span className={`text-xs font-medium flex items-center gap-1 ${positive ? 'text-emerald-400' : 'text-rose-400'}`}>
-      {positive ? '▲' : '▼'} {Math.abs(pct).toFixed(1)}% periodo anterior
+      {positive ? '▲' : '▼'} {Math.abs(pct).toFixed(1)}% vs periodo anterior
     </span>
   );
 }

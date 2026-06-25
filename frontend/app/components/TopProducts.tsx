@@ -14,7 +14,7 @@ export default function TopProducts({
     <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h2 className="text-white font-semibold text-lg">Top Products</h2>
+          <h2 className="text-white font-semibold text-lg">Top products</h2>
           <p className="text-slate-400 text-sm mt-1">Ranking por métrica seleccionada</p>
         </div>
         <div className="flex bg-slate-800 rounded-lg p-1">

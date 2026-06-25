@@ -63,7 +63,7 @@ export default function Home() {
         <div className="flex justify-between items-center py-2">
           <div>
             <h1 className="text-2xl font-bold text-white tracking-tight">Sales Dashboard</h1>
-            <p className="text-slate-500 text-sm mt-0.5">Brazilian E-Commerce · Olist Dataset</p>
+            <p className="text-slate-500 text-sm mt-0.5">E-Commerce </p>
           </div>
           {loading && (
             <div className="flex items-center gap-2 text-slate-500 text-sm">

@@ -33,7 +33,7 @@ export default function RevenueTrend({
     <div className="bg-[#0f1117] border border-slate-800 rounded-2xl p-6">
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h2 className="text-white font-semibold">Revenue & Orders Trend</h2>
+          <h2 className="text-white font-semibold">Revenue & orders trend</h2>
           <p className="text-slate-500 text-xs mt-0.5">Evolución temporal de ingresos y órdenes</p>
         </div>
         <div className="flex bg-[#080a0f] border border-slate-800 rounded-lg p-1">
